@@ -1,0 +1,5 @@
+N = input()
+num = list(input().split())
+num = list(map(int, num))
+sum = sum(num)
+print(sum)
