@@ -1,6 +1,3 @@
-import re
-
-
 def bs(array, x, low, high, type):
     while low <= high:
         mid = low + (high - low) // 2
@@ -34,7 +31,7 @@ while i < N:
     if c in col:
         col[c].append(r)
     else:
-        col[c] = [c]
+        col[c] = [r]
 
     i += 1
 
@@ -44,7 +41,6 @@ for x in row:
 for x in col:
     col[x].sort()
 
-
 Q = int(input())
 i = 0
 while i < Q:
@@ -52,40 +48,41 @@ while i < Q:
     l = int(l)
 
     if d == "L":
-        if cs in row:
-            index = bs(row[cs], l, 0, len(row[cs]) - 1, d)
+        if rs in row:
+            index = bs(row[rs], cs, 0, len(row[rs]) - 1, d)
             if index != -1:
-                cs = max(row[cs][index] + 1, cs - l)
+                cs = max(row[rs][index] + 1, cs - l)
             else:
                 cs = max(1, cs - l)
         else:
             cs = max(1, cs - l)
     elif d == "R":
-        if cs in row:
-            index = bs(row[cs], l, 0, len(row[cs]) - 1, d)
-            if index != len(row[cs]):
-                cs = min(row[cs][index] - 1, cs + l)
+        if rs in row:
+            index = bs(row[rs], cs, 0, len(row[rs]) - 1, d)
+            if index != len(row[rs]):
+                cs = min(row[rs][index] - 1, cs + l)
             else:
                 cs = min(W, cs + l)
         else:
             cs = min(W, cs + l)
     elif d == "U":
-        if rs in col:
-            index = bs(col[rs], l, 0, len(col[rs]) - 1, d)
+        if cs in col:
+            index = bs(col[cs], rs, 0, len(col[cs]) - 1, d)
             if index != -1:
-                rs = max(col[rs][index] + 1, rs - l)
+                rs = max(col[cs][index] + 1, rs - l)
             else:
                 rs = max(1, rs - l)
         else:
             rs = max(1, rs - l)
     elif d == "D":
-        if rs in col:
-            index = bs(col[rs], l, 0, len(col[rs]) - 1, d)
-            if index != len(col[rs]):
-                rs = min(col[rs][index] - 1, rs + l)
+        if cs in col:
+            index = bs(col[cs], rs, 0, len(col[cs]) - 1, d)
+            if index != len(col[cs]):
+                rs = min(col[cs][index] - 1, rs + l)
             else:
-                rs = min(W, rs + l)
+                rs = min(H, rs + l)
         else:
-            rs = min(W, rs + l)
+            rs = min(H, rs + l)
 
     print(str(rs) + " " + str(cs))
+    i += 1
