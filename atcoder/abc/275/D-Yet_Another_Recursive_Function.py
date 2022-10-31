@@ -1,18 +1,21 @@
-# TODO: TLE
 N = int(input())
 
-counter = 0
+memorisation = {}
 
 
 def recursiveFunc(n):
-    global counter
+    global memorisation
+
+    if n in memorisation:
+        return memorisation[n]
 
     if n == 0:
-        counter += 1
+        result = 1
     else:
-        recursiveFunc(int(n / 2))
-        recursiveFunc(int(n / 3))
+        result = recursiveFunc(int(n / 2)) + recursiveFunc(int(n / 3))
+
+    memorisation[n] = result
+    return result
 
 
-recursiveFunc(N)
-print(counter)
+print(recursiveFunc(N))
