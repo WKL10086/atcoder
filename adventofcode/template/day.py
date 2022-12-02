@@ -10,7 +10,7 @@ def part2(data: list[str]):
     print(ans)
 
 
-with open("day02.txt", "r") as f:
+with open("day.txt", "r") as f:
     data = f.read().splitlines()
 
     part1(data)
