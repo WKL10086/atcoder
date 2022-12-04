@@ -33,10 +33,11 @@ def part2(data: list[str]):
     print(elf[-1] + elf[-2] + elf[-3])
 
 
+# with open("test.txt", "r") as f:
 with open("day01.txt", "r") as f:
     data = f.read().splitlines()
 
-    part1(data)
+    # part1(data)
 
     part2(data)
 

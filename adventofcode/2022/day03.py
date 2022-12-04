@@ -42,10 +42,11 @@ def part2(data: list[str]):
     print(sum)
 
 
+# with open("test.txt", "r") as f:
 with open("day03.txt", "r") as f:
     data = f.read().splitlines()
 
-    part1(data)
+    # part1(data)
 
     part2(data)
 
