@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def part1(data: list[str]) -> int:
 
     return 0
