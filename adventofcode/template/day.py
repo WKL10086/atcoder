@@ -1,13 +1,11 @@
 def part1(data: list[str]) -> int:
-    ans = 0
 
-    return ans
+    return 0
 
 
 def part2(data: list[str]) -> int:
-    ans = 0
 
-    return ans
+    return 0
 
 
 def test_passing():
