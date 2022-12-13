@@ -41,8 +41,8 @@ class CPU:
 
 def part1(data: list[str]) -> int:
     cpu = CPU()
-    for lines in data:
-        command = lines.split(" ")
+    for line in data:
+        command = line.split(" ")
         if command[0] == "noop":
             cpu.action_noop()
         elif command[0] == "addx":
@@ -58,8 +58,8 @@ def part1(data: list[str]) -> int:
 
 def part2(data: list[str]) -> list[str]:
     cpu = CPU()
-    for lines in data:
-        command = lines.split(" ")
+    for line in data:
+        command = line.split(" ")
         if command[0] == "noop":
             cpu.action_noop()
         elif command[0] == "addx":
