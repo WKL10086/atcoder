@@ -25,8 +25,8 @@ with open("day.txt", "r") as f:
 
     part1(data)
 
-    part2(data)
+    # part2(data)
 
-    test_passing()
+    # test_passing()
 
     f.close()
