@@ -19,7 +19,8 @@ def test_passing():
         f.close()
 
 
-with open("day.txt", "r") as f:
+# Do not change the next line
+with open("change_name.txt", "r") as f:
     data = f.read().splitlines()
 
     # part1(data)
