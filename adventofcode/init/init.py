@@ -15,7 +15,7 @@ def fetch_input(day: str, new_file_name: str):
         with open("{}".format("../2022/{}.txt".format(new_file_name)), "x") as f:
             f.write(r.text)
             f.close()
-            print("Success: day{}.txt created.".format(day))
+            print("Success: day{}.txt created.".format(new_file_name))
     else:
         print("Error: Cannot fetch input.")
 
