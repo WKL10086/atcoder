@@ -4,18 +4,19 @@ from dotenv.main import load_dotenv
 
 # loads the .env file into the environment
 load_dotenv()
+url_year = "2022"
 
 
 def fetch_input(day: str, new_file_name: str):
-    url_var = day[1] if day[0] == "0" else day
-    url = "https://adventofcode.com/2022/day/{}/input".format(url_var)
+    url_day = day[1] if day[0] == "0" else day
+    url = f"https://adventofcode.com/{url_year}/day/{url_day}/input"
     headers = {"cookie": os.getenv("ADVENTOFCODE_USER_COOKIE", "")}
     r = requests.get(url, headers=headers)
     if r.status_code == 200:
-        with open("{}".format("../2022/{}.txt".format(new_file_name)), "x") as f:
+        with open(f"../{url_year}/{new_file_name}.txt", "x") as f:
             f.write(r.text)
             f.close()
-            print("Success: day{}.txt created.".format(new_file_name))
+            print(f"Success: day{new_file_name}.txt created.")
     else:
         print("Error: Cannot fetch input.")
 
@@ -36,18 +37,18 @@ def load_template() -> list[str]:
 
 def change_name(template: list[str], new_file_name: str):
     target_index = template.index('with open("change_name.txt", "r") as f:')
-    template[target_index] = 'with open("{}", "r") as f:'.format(new_file_name + ".txt")
+    template[target_index] = f'with open("{new_file_name}.txt", "r") as f:'
 
 
 def create_new_file(template: list[str], new_file_name: str):
     try:
-        with open("../2022/{}.py".format(new_file_name), "x") as f:
+        with open(f"../{url_year}/{new_file_name}.py", "x") as f:
             for line in template:
                 f.write(line + "\n")
             f.close()
-        print("Success: {} created.".format(new_file_name + ".py"))
+        print(f"Success: {new_file_name}.py created.")
     except FileExistsError:
-        print("Error: {} already exists.".format(new_file_name + ".py"))
+        print(f"Error: {new_file_name}.py already exists.")
 
 
 def main():
