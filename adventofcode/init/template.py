@@ -11,7 +11,7 @@ def part2(data: list[str]) -> int:
     return 0
 
 
-def test_passing():
+def run_testing():
     with open("test.txt", "r") as f:
         data = f.read().splitlines()
         assert part1(data) == 0
@@ -27,6 +27,6 @@ with open("change_name.txt", "r") as f:
 
     # part2(data)
 
-    test_passing()
+    run_testing()
 
     f.close()
