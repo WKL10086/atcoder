@@ -62,7 +62,26 @@ def part1(data: list[str], target_height: int) -> int:
     return ans
 
 
+def union_range(range_pairs: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    range_pairs = sorted(range_pairs, key=lambda x: x[0])
+    ans = []
+    for i in range(len(range_pairs)):
+        if i == 0:
+            ans.append(range_pairs[i])
+        else:
+            if range_pairs[i][0] <= ans[-1][1] + 1:
+                ans[-1] = (ans[-1][0], max(ans[-1][1], range_pairs[i][1]))
+            else:
+                ans.append(range_pairs[i])
+    return ans
+
+
 def part2(data: list[str], border: int) -> int:
+    pairs = []
+    for line in data:
+        sensor_x, sensor_y, beacon_x, beacon_y = format_input(line)
+        pair = Pair(sensor_x, sensor_y, beacon_x, beacon_y)
+        pairs.append(pair)
 
     return 0
 
@@ -156,6 +175,7 @@ def highlight_covered(map_area: list[list[int]], limit: int, pair: Pair, border:
 def valid_2_part2(data: list[str], border: int) -> int:
     print("starting run")
     ans = 0
+    # ! cause error
     map_area = [[0 for _ in range(border + 1)] for _ in range(border + 1)]
 
     print("finished initializing map_area")
@@ -172,6 +192,7 @@ def valid_2_part2(data: list[str], border: int) -> int:
     for pair in pairs:
         print(counter)
         highlight_covered(map_area, pair.Manhattan_distance, pair, border)
+        counter += 1
 
     # for row in map_area:
     #     print(row)
