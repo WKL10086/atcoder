@@ -16,7 +16,7 @@ def fetch_input(day: str, new_file_name: str):
         with open(f"../{url_year}/{new_file_name}.txt", "x") as f:
             f.write(r.text)
             f.close()
-            print(f"Success: day{new_file_name}.txt created.")
+            print(f"Success: {new_file_name}.txt created.")
     else:
         print("Error: Cannot fetch input.")
 
@@ -36,8 +36,8 @@ def load_template() -> list[str]:
 
 
 def change_name(template: list[str], new_file_name: str):
-    target_index = template.index('with open("change_name.txt", "r") as f:')
-    template[target_index] = f'with open("{new_file_name}.txt", "r") as f:'
+    target_index = template.index('    with open("change_name.txt", "r") as f:')
+    template[target_index] = f'    with open("{new_file_name}.txt", "r") as f:'
 
 
 def create_new_file(template: list[str], new_file_name: str):
