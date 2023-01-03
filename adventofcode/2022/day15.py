@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 is_testing = False
-is_part1 = True
+is_part1 = False
 
 
 class Pair:
@@ -18,6 +18,15 @@ class Pair:
         self, sensor_x: int, sensor_y: int, beacon_x: int, beacon_y: int
     ) -> int:
         return abs(sensor_x - beacon_x) + abs(sensor_y - beacon_y)
+
+    def compute_vertical_range(self, border: int):
+        self.lower_vertical_range = max(0, self.sensor_y - self.Manhattan_distance)
+        self.upper_vertical_range = min(border, self.sensor_y + self.Manhattan_distance)
+
+    def compute_horizontal_range(self, limit: int, border: int) -> tuple[int, int]:
+        lower = max(0, self.sensor_x - limit)
+        upper = min(border, self.sensor_x + limit)
+        return (lower, upper)
 
 
 def format_input(line: str) -> tuple[int, int, int, int]:
@@ -76,12 +85,34 @@ def union_range(range_pairs: list[tuple[int, int]]) -> list[tuple[int, int]]:
     return ans
 
 
+def compute_ans(x: int, y: int) -> int:
+    return 4000000 * x + y
+
+
 def part2(data: list[str], border: int) -> int:
-    pairs = []
+    pairs: list[Pair] = []
     for line in data:
         sensor_x, sensor_y, beacon_x, beacon_y = format_input(line)
         pair = Pair(sensor_x, sensor_y, beacon_x, beacon_y)
+        pair.compute_vertical_range(border)
         pairs.append(pair)
+
+    for height in range(border + 1):
+        print("current height: ", height)
+        range_pairs = []
+        for pair in pairs:
+            if height in range(
+                pair.lower_vertical_range, pair.upper_vertical_range + 1
+            ):
+                limit = pair.Manhattan_distance - abs(pair.sensor_y - height)
+                range_pairs.append(pair.compute_horizontal_range(limit, border))
+        range_pairs = union_range(range_pairs)
+        if len(range_pairs) != 1:
+            print("height: ", height)
+            print("range_pairs: ", range_pairs)
+            ans = compute_ans(range_pairs[0][1] + 1, height)
+            print("ans: ", ans)
+            return ans
 
     return 0
 
