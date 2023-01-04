@@ -2,6 +2,8 @@ from __future__ import annotations
 
 is_testing = True
 is_part_1 = True
+test_part_1_answer = 0
+test_part_2_answer = 0
 
 
 def part_1(data: list[str]) -> int:
@@ -19,9 +21,9 @@ def run_testing():
         data = f.read().splitlines()
 
         if is_part_1:
-            assert part_1(data) == 0
+            assert part_1(data) == test_part_1_answer
         else:
-            assert part_2(data) == 0
+            assert part_2(data) == test_part_2_answer
 
         f.close()
 
