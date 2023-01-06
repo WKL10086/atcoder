@@ -1,9 +1,21 @@
 from __future__ import annotations
 
-is_testing = True
-is_part_1 = True
+working_stage = 1
 test_part_1_answer = 0
 test_part_2_answer = 0
+
+if working_stage == 1:
+    is_testing = True
+    is_part_1 = True
+elif working_stage == 2:
+    is_testing = False
+    is_part_1 = True
+elif working_stage == 3:
+    is_testing = True
+    is_part_1 = False
+else:
+    is_testing = False
+    is_part_1 = False
 
 
 def part_1(data: list[str]) -> int:
