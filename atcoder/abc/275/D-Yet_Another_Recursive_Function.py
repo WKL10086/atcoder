@@ -1,20 +1,20 @@
 N = int(input())
 
-memorisation = {}
+memorization = {}
 
 
 def recursiveFunc(n):
-    global memorisation
+    global memorization
 
-    if n in memorisation:
-        return memorisation[n]
+    if n in memorization:
+        return memorization[n]
 
     if n == 0:
         result = 1
     else:
         result = recursiveFunc(int(n / 2)) + recursiveFunc(int(n / 3))
 
-    memorisation[n] = result
+    memorization[n] = result
     return result
 
 
