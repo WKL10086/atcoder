@@ -1,2 +1,3 @@
-# atcoder
-store AtCoder code
+# competitive-programming
+
+store different code problem solutions
